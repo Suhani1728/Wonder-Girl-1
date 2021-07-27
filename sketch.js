@@ -8,7 +8,6 @@ var heartImg
 var enemy1,enemy2,enemy3,enemy4;
 var enemyGroup;
 
-
 var powerGroup
 
 var livesGroup;
@@ -23,6 +22,8 @@ var i1,i2,i3;
 var score=0;
 
 var liveCount=3;
+
+var gameState="REST";
 
 function preload(){
 
@@ -227,22 +228,25 @@ enemy1=createSprite(640,100,10,10);
 enemy1.addImage(enemyImg);
 enemy1.scale=0.06;
 enemyGroup.add(enemy1);
-    
+//enemy1.debug=false;
     
 enemy2=createSprite(660,100,10,10);
 enemy2.addImage(enemyImg);
 enemy2.scale=0.06
 enemyGroup.add(enemy2);
+//enemy2.debug=false;
 
 enemy3=createSprite(680,100,10,10);
 enemy3.addImage(enemyImg);
 enemy3.scale=0.06
 enemyGroup.add(enemy3);
+//enemy3.debug=false;
 
 enemy4=createSprite(700,100,10,10);
 enemy4.addImage(enemyImg);
 enemy4.scale=0.06
 enemyGroup.add(enemy4);
+//enemy4.debug=false;
 
 //giving random position to enemy
 enemy1.x=random(10,1100);
@@ -270,6 +274,28 @@ lives (liveCount);
 };
 
 function draw(){
+
+if(gameState==="REST"){
+    background("black")
+    textSize(35)
+    fill("pink")
+    text("WONDER GIRL",450,40)
+
+    textSize(20)
+    fill("white")
+    text("Press SPACE to begin",500,510)
+    fill("red")
+    text("You are the WONDER GIRL with 3 lives and you need to save the world by:",230,120);
+    fill("yellow")
+    text("1.Collecting all the powers which are displayed as tiny squares",230,200);
+    text("2.Beware of the monsters and if they catch you,your 1 live will get deducted",230,300);
+    text("3.Score as much you can and try again agin to save the beutiful world",230,400)
+    if(keyDown("space")){
+        gameState="PLAY";
+    }
+}
+
+if(gameState==="PLAY"){    
     background("black");
 
 //increasing score after touching power 
@@ -335,71 +361,76 @@ if(keyWentUp(LEFT_ARROW)){
 
 //giving velocity to enemies when collided with mazes
 
-if(enemyGroup.collide(s1)){
-    enemyGroup.velocityX=random(-4,4);
-}
-if(enemyGroup.collide(s2)){
-    enemyGroup.velocityY=random(-4,4)
-}
-if(enemyGroup.collide(s3)){
-    enemyGroup.velocityX=random(-4,4)
-}
-if(enemyGroup.collide(s4)){
-    enemyGroup.velocityY=random(-4,4)
-}
-if(enemyGroup.collide(s5)){
-    enemyGroup.velocityX=random(-4,4)
-}
-if(enemyGroup.collide(u1)){
-    enemyGroup.velocityY=random(-4,4)
-}
-if(enemyGroup.collide(u2)){
-    enemyGroup.velocityX=random(-4,4)
-}
-if(enemyGroup.collide(u3)){
-    enemyGroup.velocityY=random(-4,4)
-}
-if(enemyGroup.collide(h1)){
-    enemyGroup.velocityY=random(-4,4)
-}
-if(enemyGroup.collide(h2)){
-    enemyGroup.velocityX=random(-4,4)
-}
-if(enemyGroup.collide(h3)){
-    enemyGroup.velocityY=random(-4,4)
-}
-if(enemyGroup.collide(a1)){
-    enemyGroup.velocityY=random(-4,4)
-}
-if(enemyGroup.collide(a2)){
-    enemyGroup.velocityX=random(-4,4)
-}
-if(enemyGroup.collide(a3)){
-    enemyGroup.velocityY=random(-4,4)
-}
-if(enemyGroup.collide(n1)){
-    enemyGroup.velocityY=random(-4,4)
-}
-if(enemyGroup.collide(n2)){
-    enemyGroup.velocityX=random(-4,4)
-}
-if(enemyGroup.collide(n3)){
-    enemyGroup.velocityY=random(-4,4)
-}
-if(enemyGroup.collide(n4)){
-    enemyGroup.velocityX=random(-4,4)
-}
-if(enemyGroup.collide(n5)){
-    enemyGroup.velocityY=random(-4,4)
-}
-if(enemyGroup.collide(i1)){
-    enemyGroup.velocityX=random(-4,4)
-}
-if(enemyGroup.collide(i2)){
-    enemyGroup.velocityY=random(-4,4)
-}
-if(enemyGroup.collide(i3)){
-    enemyGroup.velocityX=random(-4,4)
+for(var i=0; i<enemyGroup.length;i++){
+    if(enemyGroup.get(i).collide(s1)){
+        enemyGroup.get(i).velocityX=random(-4,4);;
+    }
+    if(enemyGroup.get(i).collide(s2)){
+        enemyGroup.get(i).velocityY=random(-4,4);;
+    }
+    if(enemyGroup.get(i).collide(s3)){
+        enemyGroup.get(i).velocityX=random(-4,4);;
+    }
+    if(enemyGroup.get(i).collide(s4)){
+        enemyGroup.get(i).veloc
+    }
+    if(enemyGroup.get(i).collide(s5)){
+        enemyGroup.get(i).velocityY=random(-4,4);;
+    }
+    if(enemyGroup.get(i).collide(u1)){
+        enemyGroup.get(i).velocityY=random(-4,4);;
+    }
+    if(enemyGroup.get(i).collide(u2)){
+        enemyGroup.get(i).velocityX=random(-4,4);;
+    }
+    if(enemyGroup.get(i).collide(u3)){
+        enemyGroup.get(i).velocityY=random(-4,4);;
+    }
+    if(enemyGroup.get(i).collide(h1)){
+        enemyGroup.get(i).velocityY=random(-4,4);;
+    }
+    if(enemyGroup.get(i).collide(h2)){
+        enemyGroup.get(i).velocityX=random(-4,4);;
+    }
+    if(enemyGroup.get(i).collide(h3)){
+        enemyGroup.get(i).velocityY=random(-4,4);;
+    }
+    if(enemyGroup.get(i).collide(a1)){
+        enemyGroup.get(i).velocityY=random(-4,4);;
+    }
+    if(enemyGroup.get(i).collide(a2)){
+        enemyGroup.get(i).velocityX=random(-4,4);;
+    }
+    if(enemyGroup.get(i).collide(a3)){
+        enemyGroup.get(i).velocityY=random(-4,4);;
+    }
+    /*if(enemyGroup.get(i).collide(a4)){
+        enemyGroup.get(i).velocityX=random(-4,4);;
+    }*/
+    if(enemyGroup.get(i).collide(n1)){
+        enemyGroup.get(i).velocityY=random(-4,4);;
+    }
+    if(enemyGroup.get(i).collide(n2)){
+        enemyGroup.get(i).velocityX=random(-4,4);;
+    }
+    if(enemyGroup.get(i).collide(n3)){
+        enemyGroup.get(i).velocityY=random(-4,4);;
+    }
+    if(enemyGroup.get(i).collide(n4)){
+        enemyGroup.get(i).velocityX=random(-4,4);;
+    }
+    if(enemyGroup.get(i).collide(n5)){
+        enemyGroup.get(i).velocityY=random(-4,4);;
+    }
+    if(enemyGroup.get(i).collide(i1)){
+        enemyGroup.get(i).velocityX=random(-4,4);;
+    }
+    if(enemyGroup.get(i).collide(i2)){
+        enemyGroup.get(i).velocityY=random(-4,4);;
+    }
+    if(enemyGroup.get(i).collide(i3)){
+        enemyGroup.get(i).velocityX=random(-4,4);;
+    }
 }
 
 //creting edges
@@ -410,23 +441,22 @@ girl.collide(edges);
 
 
 //giving velocity to enemies when collided by edges
-if(enemyGroup.collide(edges[0])){
-    enemyGroup.velocityY=random(-4,4);
-};
-if(enemyGroup.collide(edges[1])){
-    enemyGroup.velocityY=random(-4,4);
-};
-if(enemyGroup.collide(edges[2])){
-    enemyGroup.velocityX=random(-4,4);
-};
-if(enemyGroup.collide(edges[3])){
-    enemyGroup.velocityX=random(-4,4);
-};
-
-enemy1.collide(edges);
-enemy2.collide(edges);
-enemy3.collide(edges);
-enemy4.collide(edges);
+for(var i=0; i<enemyGroup.length;i++){
+    if(enemyGroup.get(i).collide(edges[0])){
+        enemyGroup.get(i).velocityY=random(-4,4);;
+    }
+    if(enemyGroup.get(i).collide(edges[1])){
+        enemyGroup.get(i).velocityY=random(-4,4);
+    }
+    if(enemyGroup.get(i).collide(edges[2])){
+        enemyGroup.get(i).velocityY=0;
+        enemyGroup.get(i).velocityX=random(-4,4);
+    }
+    if(enemyGroup.get(i).collide(edges[3])){
+        enemyGroup.get(i).velocityY=0;
+        enemyGroup.get(i).velocityX=random(-4,4);
+    }
+}
 
 //destroy 1 live and girl after touching enemy
 if(enemyGroup.isTouching(girl)){
@@ -437,12 +467,33 @@ livesGroup.destroyEach();
 lives(liveCount);
 }
 
+
 drawSprites();
+
 //writing text
 textSize(20)
 fill("yellow")
 text ("Score : "+score,500,20)
+
+if(liveCount===0){
+    textSize(50)
+    fill("yellow");
+    text("GAME OVER",500,250);
+    gameState="END";
+}
    
+};
+
+if(gameState==="END"){
+    fill("yellow")
+    textSize(30)
+    text("Press R to restart your game",480,350);
+    score=0;
+    if(keyDown("r")){
+        gameState="PLAY";
+    }
+}
+
 }
 
 
