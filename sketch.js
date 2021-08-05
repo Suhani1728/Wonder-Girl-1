@@ -464,6 +464,8 @@ if(enemyGroup.isTouching(girl)){
 liveCount=liveCount-1;
 girl.destroy();
 livesGroup.destroyEach();
+
+if(liveCount)
 lives(liveCount);
 }
 
@@ -489,16 +491,19 @@ if(gameState==="END"){
     textSize(30)
     text("Press R to restart your game",480,350);
     score=0;
+    
     if(keyDown("r")){
-        gameState="PLAY";
+     restart ();
+        
     }
-}
+};
 
-}
+};
 
 
 
 function lives(liveCount){
+    console.log("lives")
     var y=liveCount
 //creating hearts
 for(var i=100; i<=230 && y>0; i=i+50){
@@ -516,4 +521,13 @@ girl=createSprite(displayWidth/2,displayHeight/2,10,10);
     girl.scale=0.3
     girl.debug=false;
     girl.setCollider("rectangle",40,0,50,80);
+}
+
+
+function restart(){
+    console.log("restart")
+    liveCount=3;
+    lives(liveCount);
+    gameState="PLAY";
+    
 }
